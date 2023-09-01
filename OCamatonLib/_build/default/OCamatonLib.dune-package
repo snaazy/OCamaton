@@ -1,0 +1,34 @@
+(lang dune 3.7)
+(name OCamatonLib)
+(sections (lib .) (libexec .))
+(files
+ (lib
+  (META
+   OCamatonLib.a
+   OCamatonLib.cma
+   OCamatonLib.cmxa
+   dune-package
+   oCamatonLib.cmi
+   oCamatonLib.cmt
+   oCamatonLib.cmx
+   oCamatonLib.ml
+   opam))
+ (libexec (OCamatonLib.cmxs)))
+(library
+ (name OCamatonLib)
+ (kind normal)
+ (archives (byte OCamatonLib.cma) (native OCamatonLib.cmxa))
+ (plugins (byte OCamatonLib.cma) (native OCamatonLib.cmxs))
+ (native_archives OCamatonLib.a)
+ (main_module_name OCamatonLib)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name oCamatonLib)
+     (visibility public)
+     (kind alias)
+     (source (path OCamatonLib) (impl (path oCamatonLib.ml-gen))))
+    (name OCamatonLib))
+   (wrapped true))))

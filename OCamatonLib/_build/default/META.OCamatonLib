@@ -1,0 +1,6 @@
+description = ""
+requires = ""
+archive(byte) = "OCamatonLib.cma"
+archive(native) = "OCamatonLib.cmxa"
+plugin(byte) = "OCamatonLib.cma"
+plugin(native) = "OCamatonLib.cmxs"

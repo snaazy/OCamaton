@@ -1,0 +1,15 @@
+lib: [
+  "_build/install/default/lib/OCamatonLib/META"
+  "_build/install/default/lib/OCamatonLib/OCamatonLib.a"
+  "_build/install/default/lib/OCamatonLib/OCamatonLib.cma"
+  "_build/install/default/lib/OCamatonLib/OCamatonLib.cmxa"
+  "_build/install/default/lib/OCamatonLib/dune-package"
+  "_build/install/default/lib/OCamatonLib/oCamatonLib.cmi"
+  "_build/install/default/lib/OCamatonLib/oCamatonLib.cmt"
+  "_build/install/default/lib/OCamatonLib/oCamatonLib.cmx"
+  "_build/install/default/lib/OCamatonLib/oCamatonLib.ml"
+  "_build/install/default/lib/OCamatonLib/opam"
+]
+libexec: [
+  "_build/install/default/lib/OCamatonLib/OCamatonLib.cmxs"
+]
