@@ -41,7 +41,7 @@ let print_automaton automaton =
   Printf.printf "Alphabet : %s\n" (String.concat ", " (List.map (String.make 1) automaton.alphabet));
   Printf.printf "États : %s\n" (String.concat ", " automaton.states);
   Printf.printf "État initial : %s\n" automaton.initial_state;
-  Printf.printf "États finaux : %s\n" (String.concat ", " automaton.final_states);
+  Printf.printf "États finals : %s\n" (String.concat ", " automaton.final_states);
   Printf.printf "Transitions :\n";
   List.iter (fun (src, sym, dest) ->
     Printf.printf "  %s --%c--> %s\n" src sym dest
