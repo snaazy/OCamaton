@@ -14,6 +14,12 @@ type automaton = {
 let create_automaton states alphabet transitions initial_state final_states =
   { states; alphabet; transitions; initial_state; final_states }
 
+let add_state automaton new_state =
+  { automaton with states = new_state :: automaton.states }
+
+let add_transition automaton src sym dest =
+  { automaton with transitions = (src, sym, dest) :: automaton.transitions }
+  
 let print_automaton automaton =
   Printf.printf "Alphabet : %s\n" (String.concat ", " (List.map (String.make 1) automaton.alphabet));
   Printf.printf "États : %s\n" (String.concat ", " automaton.states);
