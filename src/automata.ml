@@ -4,6 +4,7 @@ type symbol = char
 type transition = state * symbol * state
 
 type automaton = {
+  name: string;
   states: state list;
   alphabet: symbol list;
   transitions: transition list;
@@ -11,8 +12,8 @@ type automaton = {
   final_states: state list;
 }
 
-let create_automaton states alphabet transitions initial_state final_states =
-  { states; alphabet; transitions; initial_state; final_states }
+let create_automaton name states alphabet transitions initial_state final_states =
+  { name; states; alphabet; transitions; initial_state; final_states }
 
 let add_state automaton new_state =
   { automaton with states = new_state :: automaton.states }
@@ -21,6 +22,7 @@ let add_transition automaton src sym dest =
   { automaton with transitions = (src, sym, dest) :: automaton.transitions }
   
 let print_automaton automaton =
+  Printf.printf "Nom de l'automate : %s\n" automaton.name;
   Printf.printf "Alphabet : %s\n" (String.concat ", " (List.map (String.make 1) automaton.alphabet));
   Printf.printf "États : %s\n" (String.concat ", " automaton.states);
   Printf.printf "État initial : %s\n" automaton.initial_state;
@@ -31,5 +33,6 @@ let print_automaton automaton =
   ) automaton.transitions
 
 let () =
-let automaton = create_automaton ["q1"; "q2"; "q3"] ['a'; 'b'] [("q1", 'a', "q2"); ("q2", 'b', "q3")] "q1" ["q3"] in
-print_automaton automaton
+  let automaton = create_automaton "A" ["q1"; "q2"; "q3"] ['a'; 'b'] [("q1", 'a', "q2"); ("q2", 'b', "q3")] "q1" ["q3"] in
+  let automaton_with_transition = add_transition automaton "q3" 'a' "q1" in
+  print_automaton automaton_with_transition
