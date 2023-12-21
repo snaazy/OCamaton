@@ -47,6 +47,32 @@ let print_automaton automaton =
     Printf.printf "  %s --%c--> %s\n" src sym dest
   ) automaton.transitions
 
+
+
+let is_complete automaton = 
+  let rec check_transitions state symbol =
+    match List.filter (fun (src,s,dest) -> src = state && s = symbol) automaton.transitions with 
+    | [] -> false 
+    | _ :: rest ->
+        if List.length automaton.alphabet = 1 then
+          true (* y'a une seule transition possible pour chaque etat *)
+        else
+          check_transitions state (List.hd rest) in 
+
+  let rec check_state state = 
+    let missing_transitions = List.filter (fun symbol -> not (check_transitions state symbol)) automaton.alphabet in 
+    if missing_transitions <> [] then
+      false
+    else 
+      true in 
+
+    let missing_transitions_states = List.filter (fun state -> not (check_state state)) automaton.states in
+  if missing_transitions_states <> [] then
+    false
+  else
+    true
+
+
   let () =
   let automaton = create_automaton "A" ["q1"; "q2"; "q3"] ['a'; 'b'] [("q1", 'a', "q2"); ("q2", 'b', "q3")] "q1" ["q3"] in
   let automaton_with_transition = add_transition automaton "q3" 'a' "q1" in
